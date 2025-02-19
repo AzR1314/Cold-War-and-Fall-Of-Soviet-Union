@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Fall of the Soviet Union</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #eef2f3;
+      color: #333;
+      text-align: center;
+    }
+    header {
+      background: linear-gradient(to right, #d32f2f, #ff6f61);
+      color: #fff;
+      padding: 30px 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    .event {
+      display: none;
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in;
+    }
+    .event.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .controls {
+      margin-top: 20px;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .illustration {
+      margin-top: 20px;
+      animation: popIn 1s ease-in;
+    }
+    @keyframes popIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>The Fall of the Soviet Union</h1>
+    <p>Explore the key events that led to the end of the Cold War in a fun and interactive timeline.</p>
+  </header>
+  <div class="container">
+    <div class="event active">
+      <h3>Chernobyl Disaster (1986)</h3>
+      <p>The nuclear meltdown exposed the inefficiency of the Soviet system, creating distrust and economic strain.</p>
+      <img class="illustration" src="chernobyl_mushroom_cloud.png" alt="Mushroom cloud illustration for Chernobyl">
+    </div>
+    <div class="event">
+      <h3>Proxy Wars</h3>
+      <p>Costly engagements in Afghanistan, Africa, and Latin America drained Soviet resources and morale.</p>
+      <img class="illustration" src="proxy_wars_troops.png" alt="Illustration of soldiers during proxy wars">
+    </div>
+    <div class="event">
+      <h3>Perestroika and Glasnost (1985-1991)</h3>
+      <p>Gorbachev’s policies of economic restructuring and openness allowed dissent to grow, weakening Soviet control.</p>
+      <img class="illustration" src="perestroika_open_book.png" alt="Illustration of an open book symbolizing Glasnost">
+    </div>
+    <div class="event">
+      <h3>Economic Decline</h3>
+      <p>The Soviet economy struggled due to stagnation, overspending on the military, and inability to compete with Western technology.</p>
+      <img class="illustration" src="economic_decline_chart.png" alt="Illustration of a declining chart">
+    </div>
+    <div class="event">
+      <h3>Rise of Nationalism</h3>
+      <p>Various Soviet republics, like Estonia, Lithuania, and Ukraine, pushed for independence, fracturing the USSR’s unity.</p>
+      <img class="illustration" src="nationalism_flags.png" alt="Flags of nationalist movements">
+    </div>
+    <div class="event">
+      <h3>Fall of the Berlin Wall (1989)</h3>
+      <p>The collapse of the Berlin Wall symbolized the weakening grip of the USSR over Eastern Europe.</p>
+      <img class="illustration" src="berlin_wall_fall.png" alt="Illustration of the Berlin Wall collapse">
+    </div>
+    <div class="event">
+      <h3>Dissolution of the Soviet Union (1991)</h3>
+      <p>Growing internal pressure, economic decline, and nationalist movements led to the USSR’s collapse.</p>
+      <img class="illustration" src="soviet_dissolution_map.png" alt="Illustration of the USSR breaking apart">
+    </div>
+    <div class="controls">
+      <button id="prev" disabled>Previous</button>
+      <button id="next">Next</button>
+    </div>
+  </div>
+  <script>
+    let currentEvent = 0;
+    const events = document.querySelectorAll(".event");
+    const prevButton = document.getElementById("prev");
+    const nextButton = document.getElementById("next");
+    
+    function updateEvents() {
+      events.forEach((event, index) => {
+        event.classList.toggle("active", index === currentEvent);
+      });
+      prevButton.disabled = currentEvent === 0;
+      nextButton.disabled = currentEvent === events.length - 1;
+    }
+    
+    prevButton.addEventListener("click", () => {
+      if (currentEvent > 0) {
+        currentEvent--;
+        updateEvents();
+      }
+    });
+    
+    nextButton.addEventListener("click", () => {
+      if (currentEvent < events.length - 1) {
+        currentEvent++;
+        updateEvents();
+      }
+    });
+  </script>
+</body>
+</html>
